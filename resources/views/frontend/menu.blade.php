@@ -15,7 +15,7 @@
                 <form class="d-flex" role="search" method="POST" action="{{ route('search') }}">
                 @csrf
                   <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" name="search">
-                  <button class="btn btn-outline-danger rounded-pill" type="submit">Search</button>
+                  <button class="btn btn-outline-primary rounded-pill" type="submit">Search</button>
                 </form>
             </div>
             <hr>

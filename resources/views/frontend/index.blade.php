@@ -1,25 +1,18 @@
 @extends('app')
 
 @section('banner')
-{{-- spinner image banner --}}
-<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>
-</div>
-{{-- end spinner image --}}
 
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
     <div class="container my-5 py-5">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-white animated slideInLeft">Harga Kaki Lima, Rasa Bintang Lima</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2">Ayam Geprek Borobudur menyajikan rasa yang lezat dan autentik. Terinspirasi oleh kekayaan warisan kuliner Indonesia dan keagungan keindahan Borobudur, menawarkan perpaduan rasa yang unik dan menggoda selera Anda.</p>
-                <a href="{{ route('menu.index') }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Lihat Menu</a>
+            <div class="col-lg-10 text-center text-lg-start">
+                <h1 class="display-3 text-white animated slideInLeft">Selamat Datang di Website Halal Life</h1>
+                <p class="text-white animated slideInLeft mb-4 pb-2">Destinasi utama Anda untuk inspirasi gaya hidup Islami, belanja halal berkualitas, dan diskusi komunitas yang bermanfaat. Temukan artikel inspiratif, tips praktis, produk halal terbaik, dan bergabunglah dengan forum kami untuk berbagi dan belajar bersama sesama.</p>
+                <a href="{{ route('menu.index') }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Lihat Produk</a>
             </div>
-            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+            {{-- <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                 <img class="img-fluid" src="{{ asset('images/hero.png') }}" alt="">
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -34,26 +27,26 @@
                             <div class="service-item rounded pt-3 bg">
                                 <div class="p-4">
                                     <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                                    <h5>Kualitas</h5>
-                                    <p>Menu yang kami sajikan selalu dibuat dari bahan-bahan segar dan berkualitas, memastikan setiap hidangan selalu enak dan memuaskan para pelanggan.</p>
+                                    <h5>Inspirasi Gaya Hidup Islami</h5>
+                                    <p>Menyediakan artikel-artikel inspiratif, panduan, dan tips praktis untuk menjalani gaya hidup Islami yang seimbang dan bermanfaat..</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="service-item rounded pt-3 bg">
                                 <div class="p-4">
-                                    <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-                                    <h5>Pelayanan</h5>
-                                    <p>Nikmati pelayanan cepat dan ramah dari tim kami. Kami selalu siap melayani Anda dengan sepenuh hati.</p>
+                                    <i class="fa fa-3x fa-tag text-primary mb-4"></i>
+                                    <h5>Belanja Produk Halal</h5>
+                                    <p>Menawarkan berbagai produk berkualitas tinggi yang sesuai dengan prinsip-prinsip halal, termasuk pakaian, makanan, dan produk kecantikan.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                             <div class="service-item rounded pt-3 bg">
                                 <div class="p-4">
-                                    <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                                    <h5>Harga Terjangkau</h5>
-                                    <p>Nikmati ayam geprek lezat dengan harga yang ramah di kantong. Kualitas premium tanpa menguras kantong.</p>
+                                    <i class="fa fa-3x fa-users text-primary mb-4"></i>
+                                    <h5>Diskusi Komunitas</h5>
+                                    <p>Forum komunitas untuk berbagi pengalaman, ide, dan pandangan tentang berbagai topik terkait kehidupan Islami, memungkinkan anggota untuk saling mendukung dan memperluas pengetahuan mereka.</p>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +54,8 @@
                             <div class="service-item rounded pt-3 bg">
                                 <div class="p-4">
                                     <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                                    <h5>Promosi</h5>
-                                    <p>Jangan lewatkan promo spesial dan diskon menarik dari kami di tiap minggunya!</p>
+                                    <h5>Konsultasi dan Edukasi</h5>
+                                    <p>Layanan konsultasi pribadi dan program edukasi untuk membantu memperdalam pemahaman tentang nilai-nilai Islami, dari aspek spiritual hingga praktis dalam kehidupan sehari-hari.</p>
                                 </div>
                             </div>
                         </div>
@@ -78,45 +71,44 @@
                         <div class="col-lg-6">
                             <div class="row g-3">
                                 <div class="col-6 text-start">
-                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="{{ asset('images/about-1.png') }}">
+                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="{{ asset('images/about-3.jpg') }}">
                                 </div>
                                 <div class="col-6 text-start">
-                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="{{ asset('images/about-2.png') }}" style="margin-top: 25%;">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="{{ asset('images/about-2.jpg') }}" style="margin-top: 25%;">
                                 </div>
                                 <div class="col-6 text-end">
-                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="{{ asset('images/about-3.png') }}">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="{{ asset('images/about-1.jpg') }}">
                                 </div>
                                 <div class="col-6 text-end">
-                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="{{ asset('images/about-4.png') }}">
+                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="{{ asset('images/about-4.jpg') }}">
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <h5 class="section-title ff-secondary text-start text-primary fw-normal">Tentang Kami</h5>
-                            <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
-                            <p class="mb-4">Ayam Geprek Borobudur menyajikan rasa yang lezat dan autentik. Terinspirasi oleh kekayaan warisan kuliner Indonesia dan keagungan keindahan Borobudur, menawarkan perpaduan rasa yang unik dan menggoda selera Anda.</p>
+                            <h1 class="mb-4">Tentang <img src="{{ asset('images/logo.png') }}" alt="Logo" width="90px">Website</h1>
+                            <p class="mb-4">Halal Life merupakan tempat di mana kami menginspirasi dan mendukung gaya hidup Islami yang seimbang dan bermakna. Kami berkomitmen untuk menyediakan konten bermanfaat yang mencakup artikel inspiratif, tips praktis, dan panduan terkait kehidupan sehari-hari sesuai dengan nilai-nilai Islam. Di sini, Anda juga dapat menemukan berbagai produk halal berkualitas tinggi untuk memenuhi kebutuhan sehari-hari Anda dengan keyakinan.</p>
+                            <p class="mb-4">Kami tidak hanya sekadar sebuah platform, tetapi komunitas yang berusaha untuk saling mendukung dan menguatkan. Dengan fokus pada pendekatan yang modern dan inklusif, kami mengundang Anda untuk bergabung dalam diskusi, berbagi pengalaman, dan memperluas pengetahuan tentang kehidupan Islami. Tujuan kami sederhana: memberikan inspirasi yang relevan dan solusi praktis agar setiap individu dapat meraih kesuksesan dan kebahagiaan dalam bingkai nilai-nilai yang diberkati.</p>
                             <div class="row g-4 mb-4">
                                 <div class="col-sm-6">
                                     <div class="d-flex align-items-center px-3">
-                                        <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">2019</h1>
+                                        <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">{{ $totalVisit }}</h1>
                                         <div class="ps-1">
-                                            <p class="mb-0">Tahun</p>
-                                            <h6 class="text-uppercase mb-0">Berdiri</h6>
+                                            <h6 class="text-uppercase mb-0">Total Pengunjung</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="d-flex align-items-center px-3">
-                                        <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">09.00</h1>
+                                        <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">{{ $user }}</h1>
                                         <div class="ps-8">
-                                            <p class="mb-0">Jam Buka</p>
-                                            <h6 class="text-uppercase mb-0">09.00-22.00 | Senin-Sabtu</h6>
+                                            <h6 class="text-uppercase mb-0">Total Pengguna</h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr style="height: 3px;">
-                            <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('about.index') }}">Read More</a>
+                            <a class="btn btn-primary py-3 px-5 mt-2" href="{{ route('about.index') }}">Visit Forum</a>
                         </div>
                     </div>
                 </div>

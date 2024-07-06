@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>Halal Life | {{ $title }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -33,7 +33,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset('/images/Logo.png') }}"/>
+    <link rel="shortcut icon" href="{{ asset('/images/Logo.png') }}" style="width:50px;"/>
 
     {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -43,17 +43,27 @@
 
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
-                    <h3 class="text-primary m-0"><img src="{{ asset('/images/Logo.png') }}" alt="Logo">  Geprek Borobudur</h3>
-                </a>
+                <img src="{{ asset('/images/BI.png') }}" alt="Logo" style="width: 50px; margin-right:1rem;">
+
+                <img src="{{ asset('/images/alhazen.png') }}" alt="Logo" style="width: 100px; margin-right:1rem;">
+
+                <img src="{{ asset('/images/ISEF.png') }}" alt="Logo" style="width: 100px; margin-right:1rem;">
+
+                <img src="{{ asset('/images/fesyar.png') }}" alt="Logo" style="width: 50px; margin-right:1rem;">
+
+                <img src="{{ asset('/images/ekonomi-syariah.png') }}" alt="Logo" style="width: 100px; margin-right:1rem;">
+                
+                {{-- <a href="" class="navbar-brand p-0">
+                    <h3 class="text-primary m-0">Halal Life</h3>
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="/" class="nav-item nav-link {{ $home ?? '' }}">Beranda</a>
-                        <a href="{{ route('about.index') }}" class="nav-item nav-link {{ $about ?? '' }}">Tentang</a>
-                        <a href="{{ route('menu.index') }}" class="nav-item nav-link {{ $menu ?? '' }}">Menu</a>
+                        <a href="/" class="nav-item nav-link {{ $home ?? '' }}">Home</a>
+                        <a href="{{ route('about.index') }}" class="nav-item nav-link {{ $about ?? '' }}">Forum</a>
+                        <a href="{{ route('menu.index') }}" class="nav-item nav-link {{ $menu ?? '' }}">Shop</a>
                     </div>
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -108,43 +118,18 @@
     @yield('content')
 
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-5 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Ayam Geprek Borobudur</h4>
-                        <a class="btn btn-link" href="{{ route('dashboard') }}">Home</a>
-                        <a class="btn btn-link" href="{{ route('about.index') }}">About</a>
-                        <a class="btn btn-link" href="{{ route('menu.index') }}">Menu</a>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Kontak</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. HEA Mokodompit, Kambu, Kec. Kambu, Kota Kendari, Sulawesi Tenggara 93561</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 812 4414 7678</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>ayamgeprekborobudur@gmail.com</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Jam Buka</h4>
-                        <h5 class="text-light fw-normal">Senin - Sabtu</h5>
-                        <p>09.00 - 22.00</p>
-                        <h5 class="text-light fw-normal">Minggu</h5>
-                        <p>Tutup</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
+        {{-- <div class="container-fluid bg-dark text-light footer pt-3 mt-3 wow fadeIn" data-wow-delay="0.1s">
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Ayam Geprek Borobudur</a>, All Right Reserved. 
+                            &copy; <a class="border-bottom" href="#">Halal Life</a>, All Right Reserved. 
 							
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">Kelompok 1 kelas A</a>
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+        </div> --}}
         <!-- Footer End -->
 
 

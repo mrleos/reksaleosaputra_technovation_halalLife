@@ -8,23 +8,32 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CekStatus;
+use App\Http\Middleware\GetVisitor;
 use App\Http\Middleware\verifikasi;
 use App\Models\Menu;
+use App\Models\User;
+use App\Models\Visitor;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $totalVisit = Visitor::count();
+    $user = User::count();
+    $title = 'Dashboard';
     $home = 'active';
     $food = Menu::where('category', 'food')->paginate(10);
     $drink = Menu::where('category', 'drink')->paginate(10);
-    return view('frontend.index', compact('home','food', 'drink'));
-});
+    return view('frontend.index', compact('home','food', 'drink', 'title', 'user', 'totalVisit'));
+})->middleware(GetVisitor::class);
 
 Route::get('/dashboard', function () {
+    $totalVisit = Visitor::count();
+    $user = User::count();
+    $title = 'Dashboard';
     $home = 'active';
-    return view('frontend.index', compact('home'));
-})->middleware(CekStatus::class)->name('dashboard');
+    return view('frontend.index', compact('home', 'title', '$user', 'totalVisit'));
+})->middleware(CekStatus::class, GetVisitor::class)->name('dashboard');
 
-Route::get('/about', [DashboardController::class, 'about'])->name('about.index');
+Route::get('/about', [DashboardController::class, 'about'])->middleware(verifikasi::class)->name('about.index');
 Route::get('/menu', [DashboardController::class, 'menu'])->name('menu.index');
 Route::get('/detail/{id}', [DashboardController::class, 'detail'])->name('detail');
 Route::get('/history', [DashboardController::class, 'history'])->name('history');

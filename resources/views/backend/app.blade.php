@@ -38,7 +38,7 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="{{ route('admin.index') }}">
-				<img alt="Logo" src="{{ asset('/images/Logo.png') }}" />
+				<img alt="Logo" src="{{ asset('/images/Logo.png') }}" style="width: 50px"/>
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -81,7 +81,7 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="{{ route('admin.index') }}" class="brand-logo">
-							<img alt="Logo" src="{{ asset('/images/Logo.png') }}" />
+							<img alt="Logo" src="{{ asset('/images/Logo.png') }}" style="width: 100px"/>
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->
