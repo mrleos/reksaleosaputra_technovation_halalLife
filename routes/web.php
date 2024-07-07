@@ -4,6 +4,7 @@ use App\Http\Controllers\backend\AdminDashboardController;
 use App\Http\Controllers\backend\MenuController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\frontend\DashboardController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostCommentController;
@@ -22,8 +23,8 @@ Route::get('/', function () {
     $user = User::count();
     $title = 'Dashboard';
     $home = 'active';
-    $food = Menu::where('category', 'food')->paginate(10);
-    $drink = Menu::where('category', 'drink')->paginate(10);
+    $food = Menu::where('category', 'food')->paginate(5);
+    $drink = Menu::where('category', 'drink')->paginate(5);
     return view('frontend.index', compact('home','food', 'drink', 'title', 'user', 'totalVisit'));
 })->middleware(GetVisitor::class);
 
@@ -41,6 +42,7 @@ Route::get('/detail/{id}', [DashboardController::class, 'detail'])->name('detail
 Route::get('/history', [DashboardController::class, 'history'])->name('history');
 Route::post('/search', [DashboardController::class, 'search'])->name('search');
 Route::get('/order/status', [DashboardController::class, 'order'])->name('order.status');
+Route::post('/about', [DashboardController::class, 'postSearch'])->name('post.search');
 
 Route::get('/cart', [OrderController::class, 'index'])->middleware(verifikasi::class)->name('cart.index');
 Route::post('/cart', [OrderController::class, 'store'])->middleware(verifikasi::class)->name('cart.store');
@@ -76,5 +78,6 @@ Route::put('/UpdateUser/{id}', [AdminDashboardController::class, 'userUpdate'])-
 
 Route::post('/post', [PostController::class, 'store'])->name('post.create');
 Route::post('/post/{post}/comment', [PostCommentController::class, 'store'])->name('commentPost.store');
+Route::post('/like/{post}', [LikeController::class, 'toggleLike'])->name('post.like');
 
 require __DIR__.'/auth.php';
