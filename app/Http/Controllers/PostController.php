@@ -26,4 +26,5 @@ class PostController extends Controller
 
         return redirect('/about')->with('success', 'Postingan Sedang ditijau oleh admin / operator!');
     }
+
 }

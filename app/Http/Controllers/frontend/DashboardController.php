@@ -77,4 +77,13 @@ class DashboardController extends Controller
         $order = Order::withTrashed()->where('status', '!=', 'dibatalkan')->where('user_id', $id)->paginate(10);
         return view('frontend.order', compact('order', 'title'));
     }
+
+    public function postSearch(Request $request)
+    {
+        $search = $request->search;
+        $post = Post::where('status', 'accept')->where('description', 'LIKE', "%{$search}%")->get();
+        $title = 'About';
+        $about = 'active';
+        return view('frontend.about', compact('about', 'title', 'post'));
+    }
 }

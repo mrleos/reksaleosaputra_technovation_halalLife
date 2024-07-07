@@ -39,14 +39,18 @@
     </div>
   </div>
 
+<form action="{{ route('post.search') }}" method="post">
+@csrf
 <div class="container d-flex">
     <a href="{{ route('profile.edit') }}"><img src="https://bootdey.com/img/Content/user_1.jpg" class="align rounded-circle mx-2" alt="user profile image" style="width: 40px"></a>
-    <input class="form-control me-2 rounded-pill" type="search" placeholder="Buat Postingan" aria-label="Search" name="search" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    <button class="btn btn-outline-primary rounded-pill" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-paper-plane"></i></button>
+    <input class="form-control me-2 rounded-pill" type="search" placeholder="Cari Postingan" aria-label="Search" name="search">
+    <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <button class="btn btn-outline-primary rounded-pill mx-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-circle-plus"></i></button>
 </div>
+</form>
 <hr>
 
-@foreach ($post as $item)
+@forelse ($post as $item)
 <div class="container bootstrap snippets bootdey my-3">
     <di class="col-md-8">
         <div class="col-sm-12">
@@ -71,8 +75,13 @@
                 @endif
                 <div class="post-description">
                     <p>{{ $item->description }}</p>
-                    <div class="stats">
-                        <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa fa-thumbs-up icon"></i> 137</button>
+                    <div class="stats d-flex">
+                        <form action="{{ route('post.like', $item->id) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-outline-primary rounded-pill like-button mx-1" type="submit">
+                                <i class="fa fa-thumbs-up icon"></i> <span class="like-count">{{ $item->likes->count() }}</span>
+                            </button>
+                        </form>
                         <a class="btn btn-outline-primary rounded-pill" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}"><i class="fa fa-comment icon"></i>{{ $item->commentsCount() }}</a>
                     </div>
                 </div>
@@ -121,6 +130,10 @@
       </div>
     </div>
   </div>
+@empty
+<div class="text-center">
+Postingan Tidak Ditemukan!
+</div>
+@endforelse
 
-@endforeach 
 @endsection
