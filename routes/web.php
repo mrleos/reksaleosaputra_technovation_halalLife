@@ -75,6 +75,6 @@ Route::delete('/DeleteUser/{id}', [AdminDashboardController::class, 'userDestroy
 Route::put('/UpdateUser/{id}', [AdminDashboardController::class, 'userUpdate'])->name('user.update');
 
 Route::post('/post', [PostController::class, 'store'])->name('post.create');
-Route::post('/commentPost', [PostCommentController::class, 'store'])->name('commentPost.store');
+Route::post('/post/{post}/comment', [PostCommentController::class, 'store'])->name('commentPost.store');
 
 require __DIR__.'/auth.php';
