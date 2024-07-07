@@ -38,7 +38,7 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="{{ route('admin.index') }}">
-				<img alt="Logo" src="{{ asset('/images/Logo.png') }}" />
+				<img alt="Logo" src="{{ asset('/images/Logo.png') }}" style="width: 50px"/>
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -81,7 +81,7 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="{{ route('admin.index') }}" class="brand-logo">
-							<img alt="Logo" src="{{ asset('/images/Logo.png') }}" />
+							<img alt="Logo" src="{{ asset('/images/Logo.png') }}" style="width: 100px"/>
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->
@@ -169,6 +169,16 @@
 													<span class="menu-text">Pesanan</span>
 												</a>
 											</li>
+
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{ route('post.index') }}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Postingan</span>
+												</a>
+											</li>
+
 										</ul>
 									</div>
 								</li>

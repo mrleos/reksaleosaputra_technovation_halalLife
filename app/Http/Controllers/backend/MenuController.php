@@ -18,7 +18,7 @@ class MenuController extends Controller
             $validated['image'] = $imagePath;
         }
 
-        $menu = Menu::create([
+        Menu::create([
             'title' => $validated['title'],
             'category' => $validated['category'],
             'price' => $validated['price'],

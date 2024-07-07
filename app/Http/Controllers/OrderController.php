@@ -15,22 +15,12 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $title = 'Cart';
         $user = Auth::user()->id;
         $order = Order::where('user_id', $user)->get();
-        return view('frontend.cart', compact('order'));
+        return view('frontend.cart', compact('order', 'title'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -47,37 +37,9 @@ class OrderController extends Controller
             'menu_id' => $request->menu_id,
         ]);
 
-        session()->flash('success', 'Pesanan Berhasil di Tambahkan!');
-        return redirect('/cart');
+        return redirect('/cart')->with('success', 'Pesanan Berhasil di Tambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $cartId = Crypt::decrypt($id);
@@ -86,7 +48,6 @@ class OrderController extends Controller
             'status' => 'dibatalkan'
         ]);
         $cart->delete();
-        session()->flash('success', 'Pesanan Berhasil di Hapus!');
-        return redirect('/cart');
+        return redirect('/cart')->with('success', 'Pesanan Berhasil di Hapus!');
     }
 }

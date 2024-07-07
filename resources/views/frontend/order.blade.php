@@ -39,7 +39,7 @@
         {{ $order->links() }}
         @empty
         <div class="alert alert-danger rounded" role="alert">
-            Riwayat Tidak Tersedia!
+            Pesanan Tidak Tersedia!
         </div>
         @endforelse
     </div>
