@@ -21,8 +21,8 @@ class UserSeeder extends Seeder
             'role_id' => 1
         ]);
         User::create([
-            'name' => 'leo',
-            'email' => 'rmuhreksa@gmail.com',
+            'name' => 'user',
+            'email' => 'user@gmail.com',
             'password' => '12345678',
             'role_id' => 2
         ]);

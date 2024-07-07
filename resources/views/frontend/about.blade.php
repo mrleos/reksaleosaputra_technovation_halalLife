@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')  
-  <!-- Modal -->
+  <!-- Modal Post -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -73,46 +73,51 @@
                     <p>{{ $item->description }}</p>
                     <div class="stats">
                         <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa fa-thumbs-up icon"></i> 137</button>
-                        <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa fa-comment icon"></i>128</button>
+                        <a class="btn btn-outline-primary rounded-pill" href="" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-comment icon"></i>128</a>
                     </div>
-                </div>
-                <div class="post-footer">
-                    <div class="input-group"> 
-                        <input class="form-control rounded-pill" placeholder="Add a comment" type="text">
-                        <span class="input-group-addon px-1">
-                            <a href="#" class="btn btn-outline-primary rounded-pill"><i class="fa fa-edit"></i></a>  
-                        </span>
-                    </div>
-                    <ul class="comments-list">
-                        <li class="comment d-flex shadow rounded-3" style="margin-bottom:1rem">
-                            <a href="#">
-                                <img class="avatar rounded-circle" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
-                            </a>
-                            <div class="comment-body">
-                                <div class="comment-heading">
-                                    <h4 class="user">Full name 1</h4>
-                                    <h5 class="time">7 minutes ago</h5>
-                                </div>
-                                <p>This is a comment bla bla bla</p>
-                            </div>
-                        </li>
-                        <li class="comment d-flex shadow rounded-3" style="margin-bottom:1rem">
-                            <a class="" href="#">
-                                <img class="avatar rounded-circle" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
-                            </a>
-                            <div class="comment-body">
-                                <div class="comment-heading">
-                                    <h4 class="user">Full name 1</h4>
-                                    <h5 class="time">7 minutes ago</h5>
-                                </div>
-                                <p>This is a comment bla bla bla</p>
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </di>
 </div> 
+
+  {{-- Modal Comment --}}
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Komentar</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                <li class="comment d-flex shadow rounded-3" style="margin-bottom:1rem">
+                    <img class="avatar rounded-circle" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
+                    <div class="comment-body">
+                        <div class="comment-heading">
+                            <h5 class="user">Full name 1</h5>
+                            <h6 class="text-muted time">7 minutes ago</h6>
+                        </div>
+                        <p>This is a comment bla bla bla</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <form action="{{ route('commentPost.store') }}" method="POST">
+        @method('POST')
+        @csrf
+        <div class="modal-footer">
+            <div class="input-group"> 
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                <input class="form-control rounded-pill" placeholder="Add a comment" type="text" name="message">
+                <span class="input-group-addon px-1">
+                    <button type="submit" class="btn btn-outline-primary rounded-pill"><i class="fa fa-edit"></i></button>  
+                </span>
+            </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endforeach 
 @endsection
