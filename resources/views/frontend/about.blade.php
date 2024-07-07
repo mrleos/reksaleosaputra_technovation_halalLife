@@ -73,7 +73,7 @@
                     <p>{{ $item->description }}</p>
                     <div class="stats">
                         <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa fa-thumbs-up icon"></i> 137</button>
-                        <a class="btn btn-outline-primary rounded-pill" href="" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-comment icon"></i>128</a>
+                        <a class="btn btn-outline-primary rounded-pill" href="" data-bs-toggle="modal" data-bs-target="#myModal{{ $item->id }}"><i class="fa fa-comment icon"></i>{{ $item->commentsCount() }}</a>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
 </div> 
 
   {{-- Modal Comment --}}
-  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="myModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -90,24 +90,27 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <ul>
+                @forelse ($item->post_comment as $com)
                 <li class="comment d-flex shadow rounded-3" style="margin-bottom:1rem">
                     <img class="avatar rounded-circle" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
                     <div class="comment-body">
                         <div class="comment-heading">
-                            <h5 class="user">Full name 1</h5>
-                            <h6 class="text-muted time">7 minutes ago</h6>
+                            <h5 class="user">{{ $com->user->name }}</h5>
+                            <h6 class="text-muted time">{{ $com->updated_at->diffForHumans() }}</h6>
                         </div>
-                        <p>This is a comment bla bla bla</p>
+                        <p>{{ $com->message }}</p>
                     </div>
                 </li>
+                @empty
+                Belum ada komentar
+                @endforelse
             </ul>
         </div>
-        <form action="{{ route('commentPost.store') }}" method="POST">
-        @method('POST')
+        <form action="{{ route('commentPost.store', $item->id) }}" method="POST">
         @csrf
         <div class="modal-footer">
             <div class="input-group"> 
-                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <input class="form-control rounded-pill" placeholder="Add a comment" type="text" name="message">
                 <span class="input-group-addon px-1">
                     <button type="submit" class="btn btn-outline-primary rounded-pill"><i class="fa fa-edit"></i></button>  

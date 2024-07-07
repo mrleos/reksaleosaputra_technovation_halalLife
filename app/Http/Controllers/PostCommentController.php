@@ -2,35 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\PostComment;
 use Illuminate\Http\Request;
 
 class PostCommentController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        dd($request);
-        $validated = $request->validate([
+        $request->validate([
             'message' => 'required|string',
-            'user_id' => 'required|integer',
         ]);
 
         PostComment::create([
-            'message' => $validated['message'],
-            'user_id' => $validated['user_id'],
+            'message' => $request->message,
+            'post_id' => $post->id,
+            'user_id' => auth()->id(),
         ]);
 
         return redirect()->back()->with('success', 'Komentar Ditambahkan!');
-    }
-
-    public function storeIdPost(Request $request)
-    {
-        $validated = $request->validate([
-            'post_id' => 'required|integer',
-        ]);
-
-        PostComment::update([
-            'post_id' => $validated['post_id'],
-        ]);
     }
 }
