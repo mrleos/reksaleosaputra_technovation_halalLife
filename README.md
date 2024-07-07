@@ -21,8 +21,8 @@ Copy the example env file and make the required configuration changes in the .en
 Run the database migrations & seeders (**Set the database connection in .env before migrating**)
 
     php artisan migrate
-
-    if you not using migration, import database on halallife.sql to your local computer
+    
+if you not using migration, import database on halallife.sql to your local computer
 
 Run the database seeders
 
@@ -33,8 +33,19 @@ Genrate Key
 
     php artisan key:generate
 
+Link Storage
 
-Start the local development server
+    php artisan storange:link
+
+Install npm
+
+    npm install
+    
+after that
+
+    npm run dev
+
+Start the local development server, (open another terminal)
 
     php artisan serve
 
