@@ -11,7 +11,7 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
-    {{-- Toastr --}}
+    {{-- toastr --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     <!-- Google Web Fonts -->

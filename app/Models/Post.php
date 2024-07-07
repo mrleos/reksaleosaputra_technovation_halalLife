@@ -21,4 +21,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function post_comment()
+    {
+        return $this->hasMany(PostComment::class);
+    }
 }

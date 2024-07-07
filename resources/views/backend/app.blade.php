@@ -169,6 +169,16 @@
 													<span class="menu-text">Pesanan</span>
 												</a>
 											</li>
+
+											<li class="menu-item" aria-haspopup="true">
+												<a href="{{ route('post.index') }}" class="menu-link">
+													<i class="menu-bullet menu-bullet-line">
+														<span></span>
+													</i>
+													<span class="menu-text">Postingan</span>
+												</a>
+											</li>
+
 										</ul>
 									</div>
 								</li>

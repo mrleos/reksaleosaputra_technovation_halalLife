@@ -599,4 +599,32 @@
 }
 .post .post-footer .comments-list .comment > .comments-list {
   margin-left: 15px;
-}     
+}
+
+/* Ubah warna toastr */
+.toast {
+    background-color: #333333; /* Warna latar belakang */
+    color: #ffffff; /* Warna teks */
+    font-weight: bold;
+}
+
+/* Ubah warna toastr yang spesifik (success, error, warning, info) */
+.toast-success {
+    background-color: #28a745; /* Warna latar belakang untuk sukses */
+    color: #ffffff; /* Warna teks */
+}
+
+.toast-error {
+    background-color: #dc3545; /* Warna latar belakang untuk error */
+    color: #ffffff; /* Warna teks */
+}
+
+.toast-warning {
+    background-color: #ffc107; /* Warna latar belakang untuk warning */
+    color: #000000; /* Warna teks */
+}
+
+.toast-info {
+    background-color: #17a2b8; /* Warna latar belakang untuk info */
+    color: #ffffff; /* Warna teks */
+}

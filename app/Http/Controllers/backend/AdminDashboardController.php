@@ -7,6 +7,7 @@ use App\Http\Requests\OrderStatusStoreRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Menu;
 use App\Models\Order;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -20,54 +21,6 @@ class AdminDashboardController extends Controller
     {
         $menu = Menu::latest()->paginate(10);
         return view('backend.index', compact('menu'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
     public function userMenu()
@@ -122,5 +75,27 @@ class AdminDashboardController extends Controller
     ]);
 
         return redirect('/UserOrder')->with('success', 'Status Pesanan Berhasil di Ubah!');
+    }
+
+    public function userPost()
+    {
+        $post = Post::where('status', 'pending')->latest()->paginate(10);
+        return view('backend.post', compact('post'));
+    }
+
+    public function postStatus(Request $request, $id)
+    {
+        $idPost = Crypt::decrypt($id);
+        $post = Post::find($idPost);
+
+        $validated = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $post->update([
+            'status' => $validated['status']
+    ]);
+
+        return redirect('/UserPost')->with('success', 'Status Postingan Berhasil di Ubah!');
     }
 }

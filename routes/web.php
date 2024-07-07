@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\frontend\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CekStatus;
 use App\Http\Middleware\GetVisitor;
@@ -65,9 +66,13 @@ Route::put('/UpdateMenu/{id}', [MenuController::class, 'update'])->name('menu.up
 
 Route::get('/UserMenu', [AdminDashboardController::class, 'userMenu'])->name('user.index');
 Route::get('/UserOrder', [AdminDashboardController::class, 'userOrder'])->name('order.index');
+Route::get('/UserPost', [AdminDashboardController::class, 'userPost'])->name('post.index');
+Route::post('/UserPost/{id}', [AdminDashboardController::class, 'postStatus'])->name('post.status');
 Route::post('/UserOrder/{id}', [AdminDashboardController::class, 'orderStatus'])->name('order');
 Route::get('/EditUser/{id}', [AdminDashboardController::class, 'userEdit'])->name('user.edit');
 Route::delete('/DeleteUser/{id}', [AdminDashboardController::class, 'userDestroy'])->name('user.destroy');
 Route::put('/UpdateUser/{id}', [AdminDashboardController::class, 'userUpdate'])->name('user.update');
+
+Route::post('/post', [PostController::class, 'store'])->name('post.create');
 
 require __DIR__.'/auth.php';

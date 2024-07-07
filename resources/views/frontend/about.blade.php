@@ -9,18 +9,44 @@
 </div>
 @endsection
 
-@section('content')
+@section('content')  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Buat Postingan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{{ route('post.create') }}" method="POST" enctype="multipart/form-data">
+        @method('POST')
+        @csrf
+        <div class="modal-body">
+            <input type="hidden" name='user_id' value="{{ Auth::user()->id }}">
+            <div class="input-group mb-3">
+                <textarea name="description" id="description" cols="30" rows="10" placeholder="Deskripsi" class="form-control rounded-3"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <input type="file" class="form-control rounded-3" name="image">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary rounded-pill">Kirim</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-<div class="container">
-    <form class="d-flex" role="search" method="POST" action="{{ route('search') }}">
-    @csrf
+<div class="container d-flex">
     <a href="{{ route('profile.edit') }}"><img src="https://bootdey.com/img/Content/user_1.jpg" class="align rounded-circle mx-2" alt="user profile image" style="width: 40px"></a>
-    <input class="form-control me-2 rounded-pill" type="search" placeholder="Add a post" aria-label="Search" name="search">
-    <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-    </form>
+    <input class="form-control me-2 rounded-pill" type="search" placeholder="Buat Postingan" aria-label="Search" name="search" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button class="btn btn-outline-primary rounded-pill" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-paper-plane"></i></button>
 </div>
 <hr>
 
+@foreach ($post as $item)
 <div class="container bootstrap snippets bootdey my-3">
     <di class="col-md-8">
         <div class="col-sm-12">
@@ -31,17 +57,20 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title">
-                            <a href="#"><b>Brian cartelly</b></a>
+                            <a href="#"><b>{{ $item->user->name }}</b></a>
                             made a post.
                         </div>
-                        <h6 class="text-muted time">5 seconds ago</h6>
+                        <h6 class="text-muted time">{{ $item->updated_at->diffForHumans() }}</h6>
                     </div>
                 </div>
-                <div class="post-image">
-                    <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" class="image" alt="image post">
-                </div>
+                @if ($item->image != '')
+                    <div class="post-image">
+                        <img src="{{ asset('storage/'.$item->image) }}" class="image" alt="image post">
+                    </div>
+                @else
+                @endif
                 <div class="post-description">
-                    <p>Put here your foto description</p>
+                    <p>{{ $item->description }}</p>
                     <div class="stats">
                         <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa fa-thumbs-up icon"></i> 137</button>
                         <button class="btn btn-outline-primary rounded-pill" type="submit"><i class="fa fa-comment icon"></i>128</button>
@@ -51,7 +80,7 @@
                     <div class="input-group"> 
                         <input class="form-control rounded-pill" placeholder="Add a comment" type="text">
                         <span class="input-group-addon px-1">
-                            <a href="#" class="btn btn-outline-primary rounded-pill"><i class="fa fa-2x fa-edit"></i></a>  
+                            <a href="#" class="btn btn-outline-primary rounded-pill"><i class="fa fa-edit"></i></a>  
                         </span>
                     </div>
                     <ul class="comments-list">
@@ -84,5 +113,6 @@
             </div>
         </div>
     </di>
-</div>  
+</div> 
+@endforeach 
 @endsection

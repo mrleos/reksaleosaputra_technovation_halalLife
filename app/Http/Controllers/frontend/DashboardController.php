@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Order;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -29,9 +30,10 @@ class DashboardController extends Controller
 
     public function about()
     {
+        $post = Post::latest('updated_at')->where('status', 'accept')->get();
         $title = 'About';
         $about = 'active';
-        return view('frontend.about', compact('about', 'title'));
+        return view('frontend.about', compact('about', 'title', 'post'));
     }
 
     public function menu()
