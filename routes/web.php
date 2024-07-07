@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\frontend\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\CekStatus;
@@ -74,5 +75,6 @@ Route::delete('/DeleteUser/{id}', [AdminDashboardController::class, 'userDestroy
 Route::put('/UpdateUser/{id}', [AdminDashboardController::class, 'userUpdate'])->name('user.update');
 
 Route::post('/post', [PostController::class, 'store'])->name('post.create');
+Route::post('/commentPost', [PostCommentController::class, 'store'])->name('commentPost.store');
 
 require __DIR__.'/auth.php';
