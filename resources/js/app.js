@@ -1,7 +1,16 @@
 import './bootstrap';
 
-import Alpine from 'alpinejs';
+// import Alpine from 'alpinejs';
+// import Vue from 'vue';
+// import FormComponent from './components/FormComponent.vue';
 
-window.Alpine = Alpine;
+// const app = new Vue({
+//     el: '#app',
+//     components: {
+//         FormComponent
+//     }
+// });
 
-Alpine.start();
+// window.Alpine = Alpine;
+
+// Alpine.start();

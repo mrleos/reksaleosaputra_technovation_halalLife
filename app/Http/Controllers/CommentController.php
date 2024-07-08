@@ -12,10 +12,11 @@ class CommentController extends Controller
 {
     public function index($id)
     {
+        $title = 'Komentar';
         $menuId = Crypt::decrypt($id);
         $menu = Menu::find($menuId);
         $comment = Comment::where('menu_id', $menuId)->get();
-        return view('frontend.comment', compact('menu', 'comment'));
+        return view('frontend.comment', compact('menu', 'comment', 'title'));
     }
 
     public function store(CommentStoreRequest $request)

@@ -23,9 +23,11 @@ Route::get('/', function () {
     $user = User::count();
     $title = 'Dashboard';
     $home = 'active';
-    $food = Menu::where('category', 'food')->paginate(5);
-    $drink = Menu::where('category', 'drink')->paginate(5);
-    return view('frontend.index', compact('home','food', 'drink', 'title', 'user', 'totalVisit'));
+    $all = Menu::latest()->take(8)->get();
+    $food = Menu::where('category', 'makanan')->take(8)->get();
+    $cosmetic = Menu::where('category', 'kosmetik')->take(8)->get();
+    $clothes = Menu::where('category', 'pakaian')->take(8)->get();
+    return view('frontend.index', compact('home','food', 'clothes', 'title', 'user', 'totalVisit', 'all', 'cosmetic'));
 })->middleware(GetVisitor::class);
 
 Route::get('/dashboard', function () {
@@ -68,13 +70,12 @@ Route::get('/EditMenu/{id}', [MenuController::class, 'edit'])->name('menu.edit')
 Route::put('/UpdateMenu/{id}', [MenuController::class, 'update'])->name('menu.update');
 
 Route::get('/UserMenu', [AdminDashboardController::class, 'userMenu'])->name('user.index');
+Route::post('/UserAdd', [AdminDashboardController::class, 'addUser'])->name('user.add');
 Route::get('/UserOrder', [AdminDashboardController::class, 'userOrder'])->name('order.index');
 Route::get('/UserPost', [AdminDashboardController::class, 'userPost'])->name('post.index');
 Route::post('/UserPost/{id}', [AdminDashboardController::class, 'postStatus'])->name('post.status');
 Route::post('/UserOrder/{id}', [AdminDashboardController::class, 'orderStatus'])->name('order');
-Route::get('/EditUser/{id}', [AdminDashboardController::class, 'userEdit'])->name('user.edit');
 Route::delete('/DeleteUser/{id}', [AdminDashboardController::class, 'userDestroy'])->name('user.destroy');
-Route::put('/UpdateUser/{id}', [AdminDashboardController::class, 'userUpdate'])->name('user.update');
 
 Route::post('/post', [PostController::class, 'store'])->name('post.create');
 Route::post('/post/{post}/comment', [PostCommentController::class, 'store'])->name('commentPost.store');

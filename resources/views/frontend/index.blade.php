@@ -160,23 +160,20 @@
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane fade show p-0 active">
                                 <div class="row g-4">
-                                    @forelse ($food as $item)
-                                    <div class="col-lg-6">
-                                        <div class="d-flex align-items-center">
-                                            <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('storage/'.$item->image) }}" alt="" style="width: 80px;">
-                                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                    <span>{{ $item->title }}</span>
-                                                    <span class="text-primary">Rp. {{ $item->price }}</span>
-                                                </h5>
-                                                <small class="fst-italic">{{ $item->description }}</small>
+                                    @forelse ($all as $item)
+                                    <div class="col-lg-3">
+                                        <div class="d-flex">
+                                            <div class="card rounded-3" style="width: 18rem;">
+                                                <img src="{{ 'storage/'.$item->image }}" class="card-img-top rounded-3" alt="...">
+                                                <div class="card-body clearfix">
+                                                  <h5 class="card-title">{{ $item->title }}</h5>
+                                                  <h6 class="float-start text-primary">Rp.{{ $item->price }}</h6>
+                                                  <p class="float-end">{{ $item->category }}</p>
+                                                </div>
+                                                <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary rounded-3">Lihat Detail</a>
                                             </div>
                                         </div>
-                                        <div class="text-start">
-                                            <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
-                                        </div>
                                     </div>
-                                    {{ $food->links() }}
                                     @empty
                                     <div class="alert alert-danger rounded" role="alert">
                                         Menu Tidak Tersedia!
@@ -184,25 +181,22 @@
                                     @endforelse
                                 </div>
                             </div>
-                            <div id="tab-2" class="tab-pane fade show p-0 active">
+                            <div id="tab-2" class="tab-pane fade show p-0">
                                 <div class="row g-4">
                                     @forelse ($food as $item)
                                     <div class="col-lg-6">
-                                        <div class="d-flex align-items-center">
-                                            <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('storage/'.$item->image) }}" alt="" style="width: 80px;">
-                                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                    <span>{{ $item->title }}</span>
-                                                    <span class="text-primary">Rp. {{ $item->price }}</span>
-                                                </h5>
-                                                <small class="fst-italic">{{ $item->description }}</small>
+                                        <div class="d-flex">
+                                            <div class="card rounded-3" style="width: 18rem;">
+                                                <img src="{{ 'storage/'.$item->image }}" class="card-img-top rounded-3" alt="...">
+                                                <div class="card-body clearfix">
+                                                  <h5 class="card-title">{{ $item->title }}</h5>
+                                                  <h6 class="float-start text-primary">Rp.{{ $item->price }}</h6>
+                                                  <p class="float-end">{{ $item->category }}</p>
+                                                </div>
+                                                <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary rounded-3">Lihat Detail</a>
                                             </div>
                                         </div>
-                                        <div class="text-start">
-                                            <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
-                                        </div>
                                     </div>
-                                    {{ $food->links() }}
                                     @empty
                                     <div class="alert alert-danger rounded" role="alert">
                                         Menu Tidak Tersedia!
@@ -212,23 +206,20 @@
                             </div>
                             <div id="tab-3" class="tab-pane fade show p-0">
                                 <div class="row g-4">
-                                    @forelse ($drink as $item)
+                                    @forelse ($cosmetic as $item)
                                     <div class="col-lg-6">
-                                        <div class="d-flex align-items-center">
-                                            <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('storage/'.$item->image) }}" alt="" style="width: 80px;">
-                                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                    <span>{{ $item->title }}</span>
-                                                    <span class="text-primary">Rp. {{ $item->price }}</span>
-                                                </h5>
-                                                <small class="fst-italic">{{ $item->description }}</small>
+                                        <div class="d-flex">
+                                            <div class="card rounded-3" style="width: 18rem;">
+                                                <img src="{{ 'storage/'.$item->image }}" class="card-img-top rounded-3" alt="...">
+                                                <div class="card-body clearfix">
+                                                  <h5 class="card-title">{{ $item->title }}</h5>
+                                                  <h6 class="float-start text-primary">Rp.{{ $item->price }}</h6>
+                                                  <p class="float-end">{{ $item->category }}</p>
+                                                </div>
+                                                <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary rounded-3">Lihat Detail</a>
                                             </div>
                                         </div>
-                                        <div class="text-start">
-                                            <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
-                                        </div>
                                     </div>
-                                    {{ $drink->links() }}
                                     @empty
                                     <div class="alert alert-danger rounded" role="alert">
                                         Menu Tidak Tersedia!
@@ -238,23 +229,20 @@
                             </div>
                             <div id="tab-4" class="tab-pane fade show p-0">
                                 <div class="row g-4">
-                                    @forelse ($drink as $item)
+                                    @forelse ($clothes as $item)
                                     <div class="col-lg-6">
-                                        <div class="d-flex align-items-center">
-                                            <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('storage/'.$item->image) }}" alt="" style="width: 80px;">
-                                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                    <span>{{ $item->title }}</span>
-                                                    <span class="text-primary">Rp. {{ $item->price }}</span>
-                                                </h5>
-                                                <small class="fst-italic">{{ $item->description }}</small>
+                                        <div class="d-flex">
+                                            <div class="card rounded-3" style="width: 18rem;">
+                                                <img src="{{ 'storage/'.$item->image }}" class="card-img-top rounded-3" alt="...">
+                                                <div class="card-body clearfix">
+                                                  <h5 class="card-title">{{ $item->title }}</h5>
+                                                  <h6 class="float-start text-primary">Rp.{{ $item->price }}</h6>
+                                                  <p class="float-end">{{ $item->category }}</p>
+                                                </div>
+                                                <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary rounded-3">Lihat Detail</a>
                                             </div>
                                         </div>
-                                        <div class="text-start">
-                                            <a href="{{ route('detail', Crypt::encrypt($item->id)) }}" class="btn btn-primary">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
-                                        </div>
                                     </div>
-                                    {{ $drink->links() }}
                                     @empty
                                     <div class="alert alert-danger rounded" role="alert">
                                         Menu Tidak Tersedia!

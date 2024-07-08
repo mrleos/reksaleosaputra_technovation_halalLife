@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -17,10 +19,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $totalVisit = Visitor::count();
+        $user = User::count();
         $title = 'Dashboard';
-        $food = Menu::where('category', 'food')->paginate(10);
-        $drink = Menu::where('category', 'drink')->paginate(10);
-        return view('frontend.index', compact('food', 'drink', 'title'));
+        $home = 'active';
+        $all = Menu::latest()->take(8)->get();
+        $food = Menu::where('category', 'makanan')->take(8)->get();
+        $cosmetic = Menu::where('category', 'kosmetik')->take(8)->get();
+        $clothes = Menu::where('category', 'pakaian')->take(8)->get();
+        return view('frontend.index', compact('home','food', 'clothes', 'title', 'user', 'totalVisit', 'all', 'cosmetic'));
     }
 
     public function login()
@@ -39,10 +46,12 @@ class DashboardController extends Controller
     public function menu()
     {
         $title = 'Shop';
-        $food = Menu::where('category', 'food')->paginate(10);
-        $drink = Menu::where('category', 'drink')->paginate(10);
+        $all = Menu::latest()->take(8)->get();
+        $food = Menu::where('category', 'makanan')->take(8)->get();
+        $cosmetic = Menu::where('category', 'kosmetik')->take(8)->get();
+        $clothes = Menu::where('category', 'pakaian')->take(8)->get();
         $menu = 'active';
-        return view('frontend.menu', compact('menu','food','drink', 'title'));
+        return view('frontend.menu', compact('food', 'clothes', 'title', 'all', 'cosmetic', 'menu'));
     }
 
     public function detail($id)
@@ -64,10 +73,13 @@ class DashboardController extends Controller
     public function search(Request $request)
     {
         $search = $request->search;
-        $food = Menu::where('title', 'LIKE', "%{$search}%")->where('category', 'food')->paginate(10);
-        $drink = Menu::where('title', 'LIKE', "%{$search}%")->where('category', 'drink')->paginate(10);
+        $title = 'Pencarian';
+        $all = Menu::latest()->where('title', 'LIKE', "%{$search}%")->get();
+        $food = Menu::where('title', 'LIKE', "%{$search}%")->where('category', 'makanan')->get();
+        $cosmetic = Menu::where('title', 'LIKE', "%{$search}%")->where('category', 'kosmetik')->get();
+        $clothes = Menu::where('title', 'LIKE', "%{$search}%")->where('category', 'pakaian')->get();
         $menu = 'active';
-        return view('frontend.menu', compact('menu','food','drink'));
+        return view('frontend.menu', compact('food', 'clothes', 'all', 'cosmetic', 'menu', 'title'));
     }
     
     public function order()

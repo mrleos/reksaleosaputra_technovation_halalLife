@@ -18,7 +18,7 @@ class CekStatus
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user()->role_id;
-        if ($user == 1) {
+        if ($user == 1 || $user == 3 ) {
             return redirect('/AdminDashboard');
         } else {
             return redirect('/');

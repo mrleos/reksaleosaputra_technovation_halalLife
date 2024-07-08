@@ -102,8 +102,9 @@
         <div class="mb-3">
             <select name="category" id="category">
                 <option value="kategori">Pilih Kategori</option>
-                <option value="food">Makanan</option>
-                <option value="drink">Minuman</option>
+                <option value="makanan">Makanan</option>
+                <option value="kosmetik">Kosmetik</option>
+                <option value="pakaian">Pakaian</option>
             </select>
         </div>
 
