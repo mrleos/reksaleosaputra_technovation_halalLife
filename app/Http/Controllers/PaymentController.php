@@ -24,9 +24,10 @@ class PaymentController extends Controller
 
     public function showPayment($id)
     {
+        $title = 'Pembayaran';
         $menuId = Crypt::decrypt($id);
         $order = Order::find($menuId);
-        return view('frontend.payment.form', compact('order'));
+        return view('frontend.payment.form', compact('order', 'title'));
     }
 
     public function processPayment(Request $request)
@@ -57,13 +58,12 @@ class PaymentController extends Controller
         try {
             $order = Order::find($request->id);
             if ($request->payment_method === 'cash') {
-                // Handle cash payment
-                session()->flash('success', 'Silahkan Bayar Cash!');
+                // Handle cash payment;
                 $order->update([
                     'status' => 'via cash'
                 ]);
                 $order->delete();
-                return view('frontend.payment.success');
+                return view('frontend.payment.success')->with('success', 'Silahkan Bayar Cash!');
             } else {
                 // Handle QRIS and bank transfer
                 $snapToken = Snap::getSnapToken($params);
@@ -71,7 +71,8 @@ class PaymentController extends Controller
                     'status' => 'via transfer'
                 ]);
                 $order->delete();
-                return view('frontend.payment.process', compact('snapToken', 'request'));
+                $title = 'Pembayaran';
+                return view('frontend.payment.process', compact('snapToken', 'request', 'title'));
             }
         } catch (\Exception $e) {
             return back()->withErrors('Error! ' . $e->getMessage());
@@ -80,8 +81,8 @@ class PaymentController extends Controller
 
     public function paymentSuccess()
     {
-        session()->flash('success', 'Silahkan Ambil Pesanan Anda!');
-        return view('frontend.payment.success');
+        $title = 'Pembayaran';
+        return view('frontend.payment.success', 'title')->with('success', 'Silahkan Ambil Pesanan Anda!');
     }
 
 }

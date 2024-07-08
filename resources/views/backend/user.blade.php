@@ -5,12 +5,13 @@
     <div class="card card-custom card-stretch gutter-b">
         <!--begin::Header-->
         <div class="card-header border-0 py-5 text-center flex-column">
-            <span class="font-weight-bolder text-dark">Daftar Pelanggan Ayam Geprek Borobudur</span>
-            <span class="text-muted mt-3 font-weight-bold font-size-sm">Rincian Pelanggan Terkini</span>
+            <span class="font-weight-bolder text-dark">Daftar Pengguna</span>
+            <span class="text-muted mt-3 font-weight-bold font-size-sm">Rincian Pengguna</span>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
         <div class="card-body pt-0 pb-3">
+            <button class="btn btn-light-primary mb-1" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i></button>
             <div class="tab-content">
                 <!--begin::Table-->
                 <div class="table-responsive">
@@ -19,7 +20,7 @@
                             <tr class="text-uppercase">
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Password</th>
+                                <th>Role</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -33,10 +34,9 @@
                                     <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $item->email }}</span>
                                 </td>
                                 <td>
-                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $item->password }}</span>
+                                    <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $item->role->name }}</span>
                                 </td>
                                 <td class="pr-0 text-center">
-                                    <a href="{{ route('user.edit', Crypt::encrypt($item->id)) }}" class="btn btn-light-success font-weight-bolder font-size-sm"><i class="bi bi-pencil-square"></i></a>
                                 <form action="{{ route('user.destroy', Crypt::encrypt($item->id)) }}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -71,36 +71,34 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
-        <div class="modal-body">
-          <!-- Modal content goes here -->
+        <form action="{{ route('user.add') }}" method="post">
+        @method('POST')
         @csrf
+        <div class="modal-body">
         <div class="mb-3">
-            <label for="title">Masukkan Nama Menu</label>
-            <input type="text" class="form-control" placeholder="contoh: Ayam Geprek" aria-label="title" aria-describedby="basic-addon1" name="title">
-        </div>
-
-        <div class="input-group mb-3">
-            <textarea name="description" id="description" cols="180" rows="7" placeholder="Masukkan Deskripsi Menu"></textarea>
+            <label for="name">Masukkan Nama Pengguna</label>
+            <input type="text" class="form-control" placeholder="min:3" aria-label="name" aria-describedby="basic-addon1" name="name">
         </div>
 
         <div class="mb-3">
-            <select name="category" id="category">
-                <option value="kategori">Pilih Kategori</option>
-                <option value="food">Makanan</option>
-                <option value="drink">Minuman</option>
+            <label for="email">Masukkan Email Pengguna</label>
+            <input type="text" class="form-control" placeholder="contoh: example@gmail.com" aria-label="email" aria-describedby="basic-addon1" name="email">
+        </div>
+        
+        <div class="mb-3">
+            <label for="password">Masukkan Password</label>
+            <input type="password" class="form-control" placeholder="min:8" aria-label="password" aria-describedby="basic-addon1" name="password">
+        </div>
+
+        <div class="mb-3">a
+            <select name="role_id" id="role_id">
+                <option value="2">Pilih Role</option>
+                <option value="1">Admin</option>
+                <option value="2">User</option>
+                <option value="3">Operator</option>
             </select>
         </div>
 
-        <div class="mb-3">
-            <label for="price">Masukkan Harga Menu</label>
-            <input type="number" class="form-control" placeholder="contoh: 10000" aria-label="price" aria-describedby="basic-addon1" name="price">
-        </div>
-
-        <div class="mb-3">
-            <label for="image">Unggah Gambar Menu:</label>
-            <input type="file" class="form-control-file" aria-label="image" aria-describedby="basic-addon1" name="image">
-        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStatusStoreRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Menu;
 use App\Models\Order;
@@ -11,6 +12,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class AdminDashboardController extends Controller
 {
@@ -25,28 +28,12 @@ class AdminDashboardController extends Controller
 
     public function userMenu()
     {
-        $users = User::latest()->paginate(10);
-        return view('backend.user', compact('users'));
-    }
-
-    public function userEdit($id)
-    {
-        $userId = Crypt::decrypt($id);
-        $user = User::find($userId);
-        return view('backend.user.edit', compact('user'));
-    }
-
-    public function userUpdate(UpdateUserRequest $request, $id)
-    {
-        $user = User::find($id);
-
-        $validated = $request->validated();
-        $user->update([
-                'name' => $validated['name'],
-                'email' => $validated['email'],
-        ]);
-
-        return redirect('/UserMenu')->with('success', 'User Berhasil di Update');
+        $users = User::all();
+        if (Gate::allows('user-manage')) {
+            return view('backend.user', compact('users'));
+        } else {
+            return redirect()->back()->with('error', 'Anda bukan Admin');
+        }
     }
 
     public function userDestroy($id)
@@ -97,5 +84,19 @@ class AdminDashboardController extends Controller
     ]);
 
         return redirect('/UserPost')->with('success', 'Status Postingan Berhasil di Ubah!');
+    }
+
+    public function addUser(StoreUserRequest $request)
+    {
+        $validated = $request->validated();
+
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role_id' => $validated['role_id']
+        ]);
+
+        return redirect()->back()->with('success', 'Pengguna Berhasil di Tambahkan!');
     }
 }
